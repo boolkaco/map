@@ -1,32 +1,69 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div class="page-container">
+      <md-app>
+        <md-app-toolbar class="md-primary">
+          <span class="main-title">Logo</span>
+          <md-button
+            class="md-icon-button"
+            v-show="isMapPage"
+            to="/"
+          >
+            <md-icon>list_alt</md-icon>
+          </md-button>
+        </md-app-toolbar>
+
+        <md-app-content>
+          <router-view/>
+        </md-app-content>
+      </md-app>
     </div>
-    <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
+<script>
+export default {
+  name: 'app',
+  data: _ => ({
+    menuVisible: false
+  }),
+  computed: {
+    isMapPage () {
+      return this.$route.name === 'map'
     }
   }
 }
+</script>
+
+<style lang="scss">
+  * {
+    box-sizing: border-box;
+  }
+
+  #app, .page-container {
+    height: 100vh;
+  }
+
+  .md-app {
+    height: 100%;
+  }
+
+  .md-drawer {
+    width: 230px;
+    max-width: calc(100vw - 125px);
+  }
+
+  .main-title {
+    flex: 1;
+    text-transform: uppercase;
+    font-weight: bold;
+    font-size: 20px;
+    letter-spacing: .6px;
+  }
+
+  @media (max-width: 600px) {
+    .main-title {
+      text-align: center;
+    }
+  }
 </style>

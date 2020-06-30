@@ -1,0 +1,15 @@
+@import "~vue-material/dist/theme/engine";
+
+@include md-register-theme("default", (
+  primary: #D40421,
+));
+
+@import "~vue-material/dist/theme/all";
+
+textarea:focus, input:focus{
+  outline: none;
+}
+
+.md-content {
+  padding: 0;
+}
